@@ -5,6 +5,7 @@ profit = 0
 
 
 def total_money():
+    '''Calculates the total money from different denominations in dollars'''
     total = 0.25*int(input("Enter the number of quarters: "))
     total += 0.10*int(input("Enter the number of dimes: "))
     total += 0.05*int(input("Enter the number of nickles: "))
@@ -13,6 +14,7 @@ def total_money():
 
 
 def ingredients_are_enough(req_ingredients, available_ingredients):
+    '''Return true if the order is possible with given ingredients'''
     for key in req_ingredients:
         if req_ingredients[key] > available_ingredients[key]:
             return False
@@ -20,6 +22,8 @@ def ingredients_are_enough(req_ingredients, available_ingredients):
 
 
 def make_dish(choice, resources):
+    '''Prints the final dish and the change if any while adding to profit if required
+    return true if sucessful'''
     req_ingredients = MENU[choice]["ingredients"]
     if ingredients_are_enough(req_ingredients, resources):
         print(f"Here is your {choice} ☕ ☕ ")
@@ -44,6 +48,7 @@ def calc_change(paid, order):
 
 
 def update_resources(resources, used):
+    '''Updates the resources available to the machine'''
     resources["water"] -= used["water"]
     resources["coffee"] -= used["coffee"]
     if "milk" in used.keys():
