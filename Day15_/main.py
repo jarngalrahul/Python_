@@ -5,7 +5,7 @@ profit = 0
 
 
 def total_money():
-    '''Calculates the total money from different denominations in dollars'''
+    '''Calculates the total money from different denomination in dollars'''
     total = 0.25*int(input("Enter the number of quarters: "))
     total += 0.10*int(input("Enter the number of dimes: "))
     total += 0.05*int(input("Enter the number of nickles: "))
