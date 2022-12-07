@@ -1,4 +1,4 @@
-# challenge
+# Basic coffee machine project
 from data import resources, MENU, art
 import os
 profit = 0
