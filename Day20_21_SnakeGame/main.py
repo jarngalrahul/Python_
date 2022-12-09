@@ -39,7 +39,7 @@ while game_is_on:
 
     # detecting collisions with the wall and calling gamw_over
     # method of scoreBoard class
-    if snake.head.xcor() > 260 or snake.head.xcor() < -285 or snake.head.ycor() > 270 or snake.head.ycor() < -270:
+    if snake.head.xcor() > 265 or snake.head.xcor() < -285 or snake.head.ycor() > 270 or snake.head.ycor() < -270:
         game_is_on = False
         score.game_over()
 
