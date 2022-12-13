@@ -1,9 +1,9 @@
 # extrscting the colors and using them to make million dollar paintings
 # importing colors from the given jpg image using colorgram
-# import colorgram
+import colorgram
 import turtle as t
 import random
-# colors = colorgram.extract("img.jpg", 30)
+# colors = colorgram.extract("Day18_\\img.jpg", 30)
 
 # rgb_list = []
 # for color in colors:
@@ -34,16 +34,31 @@ screen.setworldcoordinates(0, 0, 600, 600)
 # y = t.window_width()
 # t.Screen().setup(width=200, height=200, startx=0, starty=0)
 
+
+is_on = False
 t.colormode(255)
 turtle_sensei.speed('fastest')
 turtle_sensei.hideturtle()
 turtle_sensei.penup()
+
+
+def stop():
+    global is_on
+    is_on = True
+    print('here')
+
+
 for i in range(10):
     turtle_sensei.goto(0, (i+1)*50)
     for _ in range(10):
-        turtle_sensei.fd(50)
-        turtle_sensei.dot(20, random.choice(color_list))
+        if not is_on:
+            screen.onkeypress(stop, "a")
+            screen.listen()
+            print('here')
+            turtle_sensei.fd(50)
+            turtle_sensei.dot(20, random.choice(color_list))
     turtle_sensei.penup()
 
 
-screen.exitonclick()
+screen.listen()
+screen.mainloop()
