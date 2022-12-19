@@ -1,3 +1,4 @@
+import json
 import random
 from tkinter import *
 from tkinter import messagebox
@@ -31,21 +32,49 @@ def add_data():
     website = website_entry.get()
     email = email_entry.get()
     password = password_entry.get()
+    new_json_data = {
+        website: {
+            "email": email,
+            "password": password
+        }
+    }
     if website == "" or email == "" or password == "":
         messagebox.showinfo(
             title="Oops", message="Please don't leave any feilds empty!")
     else:
-        is_true = messagebox.askokcancel(
-            title=website, message=f"These are the details entered: \nEmail - {email}\n Password - {password}\n Is it okay to save?")
-        if is_true:
-            data = f"{website} | {email} | {password}\n"
-            with open(file="Day29_/data.txt", mode="a") as file:
-                file.write(data)
-                print(data)
+        # data = f"{website} | {email} | {password}\n"
+        try:
+            with open(file="Day29_/data.json", mode="r") as data_file:
+                old_data = json.load(data_file)
+                # print(type(old_data)) --> <dict>
+        except FileNotFoundError:
+            with open(file="Day29_/data.json", mode="w") as data_file:
+                json.dump(new_json_data, data_file, indent=4)
+        else:
+            old_data.update(new_json_data)
+            with open(file="Day29_/data.json", mode="w") as data_file:
+                json.dump(old_data, data_file, indent=4)
+        finally:
             password_entry.delete(0, END)
             website_entry.delete(0, END)
 
+# ---------------------------- SEARCH FUNCTIONALITY SETUP ------------------------------- #
 
+
+def find_password():
+    website = website_entry.get()
+    try:
+        with open("Day29_//data.json") as data_file:
+            data = json.load(data_file)
+            email = data[website]["email"]
+            password = data[website]["password"]
+            messagebox.showinfo(
+                title="Data", message=f"Email: {email}\nPassword: {password}")
+    except FileNotFoundError:
+        messagebox.showerror(title="Error!", message="No Data File Found")
+    except KeyError:
+        messagebox.showerror(
+            title="Error!", message=f"No details for website {website} exists")
 # ---------------------------- UI SETUP ------------------------------- #
 
 
@@ -69,7 +98,7 @@ password_label.grid(row=3, column=0, sticky='E')
 
 # Entries
 website_entry = Entry(width=35)
-website_entry.grid(row=1, column=1, columnspan=2, sticky='EW')
+website_entry.grid(row=1, column=1, columnspan=1, sticky='EW')
 website_entry.focus()
 email_entry = Entry(width=35)
 email_entry.grid(row=2, column=1, columnspan=2, sticky='EW')
@@ -84,4 +113,8 @@ generate_password_btn.grid(row=3, column=2, sticky='W')
 
 add_btn = Button(text="Add", width=36, command=add_data)
 add_btn.grid(row=4, column=1, columnspan=2, sticky='EW')
+
+search_btn = Button(text="Search", command=find_password)
+search_btn.grid(row=1, column=2, sticky='EW')
+
 window.mainloop()
