@@ -18,7 +18,7 @@ current_datetime = dt.datetime.now()
 cur_day = current_datetime.day
 cur_month = current_datetime.month
 MY_EMAIL = "pythontesting1922@gmail.com"
-PASSWORD = "*******************"
+PASSWORD = "bybrhsupxntngjcz"
 MAILING_ADDR = "testingpython63@yahoo.com"
 
 
