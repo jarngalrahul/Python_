@@ -1,7 +1,7 @@
 # API- using authentication keys, etc....
 import requests
-key = "fc4a07f6debb37aaff4bef91567e0756"
-key2 = "69f04e4613056b159c2761a9d9e664d2"
+key = "************"
+key2 = "*************"
 parameters = {
     "lat": 32.726601,
     "lon": 74.857025,
