@@ -3,11 +3,12 @@
 # intreact with an external system.
 
 import datetime
+import os
 import smtplib
 import time
 import requests
-MY_LAT = 32.7266
-MY_LONG = 74.8570
+MY_LAT = 99
+MY_LONG = 99
 
 # ------------iss api for its position----------#
 
@@ -47,8 +48,8 @@ while True:
     if is_night() and iss_overhead():
         with smtplib.SMTP(host="smtp.gmail.com", port=587) as connection:
             connection.starttls()
-            connection.login(user="pythontesting1922@gmail.com",
-                             password="xxxxxxxxxxx")
-            connection.sendmail(from_addr="pythontesting1922@gmail.com",
+            connection.login(user=os.environ.get("GOOGLE_TEST_MAIL"),
+                             password=os.environ.get("GOOGLE_TEST_PASSWORD"))
+            connection.sendmail(from_addr=os.environ.get("GOOGLE_TEST_MAIL"),
                                 to_addrs="pythontesting1922@gmail.com",
                                 msg="Subject:Look out bro👆\n\nIss is overhead you in the sky")
