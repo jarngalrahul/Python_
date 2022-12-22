@@ -1,6 +1,6 @@
 # API- using authentication keys, etc....
 # method : setx keyname "value"
-# finding it back: set | findstr keyname
+# finding it back: set | findstr keynamE
 import os
 import requests
 key = os.environ.get("key")
