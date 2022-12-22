@@ -1,7 +1,10 @@
 # API- using authentication keys, etc....
+# method : setx keyname "value"
+# finding it back: set | findstr keyname
+import os
 import requests
-key = "fc4a07f6debb37aaff4bef91567e0756"
-key2 = "69f04e4613056b159c2761a9d9e664d2"
+key = os.environ.get("key")
+key2 = os.environ.get("key2")
 parameters = {
     "lat": 32.726601,
     "lon": 74.857025,
@@ -13,9 +16,11 @@ response = requests.get(
 response.raise_for_status()
 data = response.json()
 hourly_weather = data['hourly']
+print(hourly_weather)
 i = 0
 while i in range(0, 12):
     id = hourly_weather[i]['weather'][0]['id']
     i += 1
     if id < 700:
         print("Bring your umbrella.")
+        # send mail or message using python

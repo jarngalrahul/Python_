@@ -45,10 +45,10 @@ def is_night():
 while True:
     time.sleep(60)
     if is_night() and iss_overhead():
-        connection = smtplib.SMTP(host="smtp.gmail.com", port=587)
-        connection.starttls()
-        connection.login(user="pythontesting1922@gmail.com",
-                         password="xxxxxxxxxxx")
-        connection.sendmail(from_addr="pythontesting1922@gmail.com",
-                            to_addrs="pythontesting1922@gmail.com",
-                            msg="Subject:Look out bro👆\n\nIss is overhead you in the sky")
+        with smtplib.SMTP(host="smtp.gmail.com", port=587) as connection:
+            connection.starttls()
+            connection.login(user="pythontesting1922@gmail.com",
+                             password="xxxxxxxxxxx")
+            connection.sendmail(from_addr="pythontesting1922@gmail.com",
+                                to_addrs="pythontesting1922@gmail.com",
+                                msg="Subject:Look out bro👆\n\nIss is overhead you in the sky")

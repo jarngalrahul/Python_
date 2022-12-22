@@ -1,0 +1,12 @@
+Hi,
+How are you doing? This is some information about email module:
+    The email package is a library for managing email messages. 
+It is specifically not designed to do any sending of email messages to SMTP (RFC 2821), 
+NNTP, or other servers; those are functions of modules such as smtplib and nntplib. 
+The email package attempts to be as RFC-compliant as possible, supporting RFC 5322 and RFC 6532, 
+as well as such MIME-related RFCs as RFC 2045, RFC 2046, RFC 2047, RFC 2183, and RFC 2231.
+    The overall structure of the email package can be divided into three major components, 
+plus a fourth component that controls the behavior of the other components.
+
+Thanks
+RJ
